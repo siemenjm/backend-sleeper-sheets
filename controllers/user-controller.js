@@ -39,7 +39,12 @@ router.get("/:userId", async (req, res) => {
 
 // USER DELETE ROUTE
 router.delete("/:userId", async (req, res) => {
-	res.status(200).json({message: "user delete route: " + req.params.userId});
+	try {
+        const deletedUser = await User.findByIdAndDelete(req.params.userId);
+        res.json(deletedUser);
+    } catch(err) {
+        res.status(400).json(err);
+    }
 });
 
 // USER UPDATE ROUTE
@@ -48,7 +53,7 @@ router.put("/:userId", async (req, res) => {
         const updatedUser = await User.findByIdAndUpdate(req.params.userId, req.body, { new: true });
         res.json(updatedUser);
     } catch(err) {
-        req.status(400).json(err);
+        res.status(400).json(err);
     }
 });
 
