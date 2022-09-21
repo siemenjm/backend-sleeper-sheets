@@ -1,24 +1,19 @@
 ///////////////////////////////
 // DEPENDENCIES
 ////////////////////////////////
-
-// initialize .env variables
 require("dotenv").config();
-
-// pull PORT from .env, give default value of 4000 and establish DB Connection
-const { PORT, MONGODB_URI } = process.env;
 require('./config/db.connection');
 
-// import express
 const express = require("express");
-
-// create application object
-const app = express();
-
-const usersController = require('./controllers/user-controller');
-
 const cors = require('cors');
 const morgan = require('morgan');
+
+const { PORT } = process.env;
+
+const usersController = require('./controllers/auth-controller');
+// const usersController = require('./controllers/user-controller');
+
+const app = express();
 
 ///////////////////////////////
 // MIDDLEWARE
@@ -27,6 +22,7 @@ app.use(express.json());
 app.use(cors());
 app.use(morgan('dev'));
 
+// app.use('/auth', authController);
 app.use('/users', usersController);
 
 ///////////////////////////////
