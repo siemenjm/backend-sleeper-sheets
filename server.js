@@ -10,7 +10,7 @@ const morgan = require('morgan');
 
 const { PORT } = process.env;
 
-const usersController = require('./controllers/auth-controller');
+const authController = require('./controllers/auth-controller');
 // const usersController = require('./controllers/user-controller');
 
 const app = express();
@@ -22,8 +22,8 @@ app.use(express.json());
 app.use(cors());
 app.use(morgan('dev'));
 
-// app.use('/auth', authController);
-app.use('/users', usersController);
+app.use('/auth', authController);
+// app.use('/users', usersController);
 
 ///////////////////////////////
 // ROUTES
