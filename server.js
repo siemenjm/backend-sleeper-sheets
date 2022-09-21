@@ -14,7 +14,21 @@ const express = require("express");
 
 // create application object
 const app = express();
-	
+
+const usersController = require('./controllers/user-controller');
+
+const cors = require('cors');
+const morgan = require('morgan');
+
+///////////////////////////////
+// MIDDLEWARE
+////////////////////////////////
+app.use(express.json());
+app.use(cors());
+app.use(morgan('dev'));
+
+app.use('/users', usersController);
+
 ///////////////////////////////
 // ROUTES
 ////////////////////////////////
