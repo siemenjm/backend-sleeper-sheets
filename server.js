@@ -7,6 +7,7 @@ require("dotenv").config();
 
 // pull PORT from .env, give default value of 4000 and establish DB Connection
 const { PORT, MONGODB_URI } = process.env;
+require('./config/db.connection');
 
 // import express
 const express = require("express");
@@ -14,13 +15,13 @@ const express = require("express");
 // create application object
 const app = express();
 	
-	///////////////////////////////
-	// ROUTES
-	////////////////////////////////
-	// create a test route
-	app.get("/", (req, res) => {
-	    res.send("hello world");
-	});
+///////////////////////////////
+// ROUTES
+////////////////////////////////
+// create a test route
+app.get("/", (req, res) => {
+    res.send("hello world");
+});
 
 ///////////////////////////////
 // LISTENER
