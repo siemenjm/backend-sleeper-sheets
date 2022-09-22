@@ -1,7 +1,6 @@
 const express = require('express');
-const { restart } = require('nodemon');
 const router = express.Router();
-const { People, User } = require('../models');
+const { User } = require('../models');
 
 ///////////////////////////////
 // ROUTES
