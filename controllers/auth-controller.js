@@ -19,8 +19,8 @@ const { createUserToken, requireToken } = require("../middleware/auth");
 
 router.get('/user/:id', requireToken, async (req,res)=>{
   try {
-    const foundUser = await User.findById(req.params.id)
-    res.status(201).json({_id: foundUser._id, email: foundUser.email})
+    const foundUser = await User.findById(req.params.id);
+    res.status(201).json({_id: foundUser._id, email: foundUser.email, sleeperName: foundUser.sleeperName})
   }catch (err){
     res.status(400).json({ error: err.message });
   }
@@ -61,7 +61,6 @@ router.post("/login", async (req, res) => {
     const logggingUser = req.body.email;
     const foundUser = await User.findOne({ email: logggingUser });
     const token = await createUserToken(req, foundUser);
-    console.log("created token:", token);
     res.status(200).json({ user: foundUser, isLoggedIn: true, token });
   } catch (err) {
     res.status(400).json({ error: err.message });

@@ -11,7 +11,7 @@ const morgan = require('morgan');
 const { PORT } = process.env;
 
 const authController = require('./controllers/auth-controller');
-// const usersController = require('./controllers/user-controller');
+const usersController = require('./controllers/user-controller');
 
 const app = express();
 
@@ -23,7 +23,7 @@ app.use(cors());
 app.use(morgan('dev'));
 
 app.use('/auth', authController);
-// app.use('/users', usersController);
+app.use('/users', usersController);
 
 ///////////////////////////////
 // ROUTES
